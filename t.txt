@@ -1,0 +1,28 @@
+//webpack 4.x不需要这样配置入口和出口。默认入口是src里的index.js，出口是dist里的main.js
+var path=require('path');
+module.export={
+    /*entry:path.resolve('src/index.js'),
+    output:{
+       path:'./dist',
+       filename:'main.js'
+    },*///webpack 4.0以上，不需要配置打包文件的出口和入口
+    //配置模块
+    /*module:{
+        loaders:[//定义了一系列的加载器，Array
+            {
+                test:/\.js$/,     //指定要加载的文件,正则，匹配到的文件后缀名
+                loader:'babel-loader'//指定加载器
+            }
+
+        ]
+    }*/
+    module:{
+        rules:[
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "babel-loader"
+            }
+        ]
+    }
+}
