@@ -24,6 +24,18 @@ module.exports={
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: "babel-loader"
+            },
+            {
+                test:/\.css$/,
+                use:['style-loader','css-loader']
+            },
+            {
+                test:/\.less$/,
+                use:['style-loader','css-loader','less-loader']
+            },
+            {
+                test:/\.(jpg|png|gif)$/,
+                use:['url-loader']
             }
         ]
     }
