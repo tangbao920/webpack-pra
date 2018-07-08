@@ -5,8 +5,10 @@ function rewriteUrl(replacePath) {
         req.url = req.path.replace(opt.path, replacePath) + query;
     };
 }
+let htmlWebpack=require('html-webpack-plugin');
+const VueLoaderPlugin=require('vue-loader/lib/plugin');
 module.exports={
-    devServer: {
+/*    devServer: {
        port:9094,
        contentBase:'/dist',
        proxy:[
@@ -17,7 +19,7 @@ module.exports={
                changeOrigin: true
            }
        ]
-    },
+    },*/
     module:{
         rules:[
             {
@@ -36,7 +38,18 @@ module.exports={
             {
                 test:/\.(jpg|png|gif)$/,
                 use:['url-loader?limit=8192']
+            },
+            {
+                test:/\.vue$/,
+                use:['vue-loader']
             }
         ]
-    }
+    },
+    plugins: [
+        new htmlWebpack({
+            template:'./src/index.html',
+            //filename:'login.html'
+        }),
+        new VueLoaderPlugin()
+    ]
 }
